@@ -78,7 +78,7 @@ def parse_nmap_results(xml_file):
                             'service': service,
                             'product': product,
                             'version': version,
-                            'criticality': 'High' if portid in CRITICAL_PORTS else 'Low'
+                            'criticality': 'Critical' if portid in CRITICAL_PORTS else 'Warning'
                         }
                         
                         for port_range, info in PORT_INFO.items():
@@ -161,11 +161,11 @@ def write_results_to_xml(vulnerabilities, xml_file):
 def calculate_network_security_score(vulnerabilities, target_ip):
     host_vulnerabilities = [v for v in vulnerabilities if v['ip'] == target_ip]
     total_vulnerabilities = len(host_vulnerabilities)
-    critical_vulnerabilities = len([v for v in host_vulnerabilities if v['criticality'] == 'High'])
+    critical_vulnerabilities = len([v for v in host_vulnerabilities if v['criticality'] == 'Critical'])
 
     base_score = 100
     deduction_per_critical = 10
-    deduction_per_non_critical = 2
+    deduction_per_warning = 5
 
-    score = base_score - (critical_vulnerabilities * deduction_per_critical) - ((total_vulnerabilities - critical_vulnerabilities) * deduction_per_non_critical)
+    score = base_score - (critical_vulnerabilities * deduction_per_critical) - ((total_vulnerabilities - critical_vulnerabilities) * deduction_per_warning)
     return max(0, min(100, score))
