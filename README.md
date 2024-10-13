@@ -87,12 +87,46 @@ You are now good to go. Navigate to the CyberSeer Folder and run the following c
 
 
 ** IMPORTANT**
- You will need a valid NIST API key for the CVE scanner to work. you can get one from here https://nvd.nist.gov/developers/request-an-api-key
+ YOU WILL NEED a valid NIST API key for the CVE scanner to work. You can get one for free from here https://nvd.nist.gov/developers/request-an-api-key
  
  ALSO
  
- For the result "Insights" to work you will need a ChatGPT API key. You can either message me for a key to my Assistant, or, better yet, make your own here https://platform.openai.com. 
+ For the "Get Recommendations" feature to work, you will need a ChatGPT API key. You can either message me for a key to my Assistant or, better yet, make your own here https://platform.openai.com. 
  
 This is the prompt I used for the ChatGPT Assistant -
  
-"You are to receive a list of found vulnerabilities from a Linux system and you are to very concisely comment on what should be done about each vulnerability,   if anything. Some results may be benign or informational. Each comment should be returned in the same format as the data you receive."
+You are to receive a list of found vulnerability scan results from a Linux system and you are to very concisely comment on what should be done about EVERY result, or inform if nothing needs to be done and the data is just informational.  Please make the advice specific to Linux, possibly advising actual settings to change if necessary.
+Each comment should be returned in the exact same JSON format as the data you receive but with your comments as an additional key for each value added on to the end of each value. For the Network results please format as follows;
+{
+  "network": {
+    "score",
+    "details": [
+      [
+        "ip_address",
+        "port",
+        "protocol",
+        "service",
+        "product",
+        "version",
+        "severity",
+       "your recommendation here"
+      ]
+    ]
+  }
+}
+
+and CVE results like this;
+
+{
+  "cve": {
+    "details": [
+      [
+        "software",
+        "version",
+        "CVE",
+        "severity",
+        "your recommendation here"
+      ]
+    ]
+  }
+}
