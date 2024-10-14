@@ -1,5 +1,5 @@
 # CyberSeer
-CyberSeer - Lightweight, automated Linux Security Scanner
+CyberSeer - Lightweight, automated Linux OS Security Scanner w/ NIST NVD and OpenAi API integration
 
 SEE **IMPORTANT** NOTICE AT THE BOTTOM
 
