@@ -3,6 +3,13 @@ CyberSeer - Lightweight, automated Linux OS Security Scanner w/ NIST NVD and Ope
 
 SEE **IMPORTANT** NOTICE AT THE BOTTOM
 
+
+![image](https://github.com/user-attachments/assets/87acff90-2d01-4772-9dca-d1065684a146)
+
+
+
+How to Install;
+
 Dependancies - 
 1. Install Python 3
 
